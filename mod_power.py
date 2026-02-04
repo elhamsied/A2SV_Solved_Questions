@@ -1,0 +1,7 @@
+a = int(input())
+b = int(input())
+m = int(input())
+su = pow(a,b)
+mod = pow(a,b,m)
+print(su)
+print(mod)

@@ -1,21 +1,19 @@
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
-        arr = [i for i in range(1, n + 1)]
+    
+
+        def backtrack(first_num, curr):
+            if len(curr) == k:
+                ans.append(curr[:])
+                return
+
+            need = k - len(curr)
+            max_pick = n - need + 1 
+            for num in range(first_num, n + 1):
+                curr.append(num)
+                backtrack(num + 1, curr)
+                curr.pop()
+
         ans = []
-
-        def backtrack(idx, combo):
-            if len(combo) == k:
-                ans.append(combo[:])
-                return
-            
-            if idx == len(arr):
-                return
-
-            combo.append(arr[idx])
-            backtrack(idx + 1, combo)
-            combo.pop()
-
-            backtrack(idx + 1, combo)
-
-        backtrack(0, [])
+        backtrack(1, [])
         return ans

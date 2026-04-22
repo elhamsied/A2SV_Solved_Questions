@@ -4,15 +4,15 @@ class Solution:
         for u,v in edges:
             graph[u].append(v)
             graph[v].append(u)
-        visited = set()
-        def dfs(node,visited):
+        stack = [source]
+        visited = set([source])
+
+        while stack:
+            node = stack.pop()
             if node == destination:
-                return True
-            visited.add(node)
+                return True 
             for nbr in graph[node]:
                 if nbr not in visited:
-                    if dfs(nbr,visited):
-                        return True
-            return False
-
-        return dfs(source,visited)
+                    stack.append(nbr)
+                    visited.add(nbr)
+        return False

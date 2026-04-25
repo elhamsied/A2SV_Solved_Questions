@@ -1,0 +1,18 @@
+class Solution:
+    def getHappyString(self, n: int, k: int) -> str:
+        res = []
+
+        def dfs(s):
+            if len(s) == n:
+                res.append(s)
+                return
+
+            for ch in "abc":
+                if not s or s[-1] != ch:
+                    dfs(s + ch)
+
+        dfs("")
+
+        if k > len(res):
+            return ""
+        return res[k - 1]
